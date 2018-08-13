@@ -1,4 +1,4 @@
-var Survey = require('../models/survey');
+var Survey = require('../models/surveys');
 
 /* VIEWS */
 // Index
