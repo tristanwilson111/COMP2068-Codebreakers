@@ -1,28 +1,28 @@
-var Survey = require('../models/surveys');
+const Survey = require('../models/surveys');
 
 /* VIEWS */
 // Index
-exports.index = function(req, res, next) {
+exports.index = (req, res, next) => {
   // create our locals parameter
   let locals = {
     title: 'Surveys List',
   };
 
   Survey.find()
-    .then(function(surveys) {
+    .then(surveys => {
       // add the surveys to our locals
       locals.surveys = surveys;
 
       // render our view
       res.render('surveys/index', locals);
     })
-    .catch(function(err) {
+    .catch(err => {
       next(err);
     });
 };
 
 // Show
-exports.show = function(req, res, next) {
+exports.show = (req, res, next) => {
   // locals
   let locals = {
     title: 'Survey Details',
@@ -31,17 +31,17 @@ exports.show = function(req, res, next) {
   Survey.findById({
     _id: req.params.id,
   })
-    .then(function(survey) {
+    .then(survey => {
       locals.survey = survey;
       res.render('surveys/show', locals);
     })
-    .catch(function(err) {
+    .catch(err => {
       next(err);
     });
 };
 
 // New
-exports.new = function(req, res, next) {
+exports.new = (req, res, next) => {
   if (!req.isAuthenticated()) {
     req.session.messages = [];
     req.session.messages.push('Please login.');
@@ -58,7 +58,7 @@ exports.new = function(req, res, next) {
 };
 
 // Edit
-exports.edit = function(req, res, next) {
+exports.edit = (req, res, next) => {
   if (!req.isAuthenticated()) {
     req.session.messages = [];
     req.session.messages.push('Please login.');
