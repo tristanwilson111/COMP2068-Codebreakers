@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const SurveyLineSchema = new mongoose.Schema({
   prompt: {
     type: String,
-    // required:
-    //   'Survey line must have an associated prompt (I.E. a question or data label).',
+    required:
+      'Survey line must have an associated prompt (I.E. a question or data label).',
   },
   name: {
     type: String,
-    //required: 'Survey line must have a data name.',
+    required: 'Survey line must have a data name.',
   },
 });
 
