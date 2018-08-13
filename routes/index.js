@@ -3,8 +3,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { 
-    title: 'Bob\'s Bait and Tackle Shop'
+  res.render('index', {
+    title: 'Shit Surveys',
   });
 });
 
