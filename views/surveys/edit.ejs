@@ -24,6 +24,46 @@
         </div>
       </fieldset>
 
+      <div id="survey_questions">
+        <div class="form-group">
+          <button type="button" class="btn btn-success btn-sm" onclick="addQuestion()">Add Question</button>
+        </div>
+
+        <% if ( survey.surveyData && survey.surveyData.length > 0 ) {%>
+          <% for ( let question of survey.surveyData ) { %>
+            <div class="question">
+              <button type="button" class="remove btn btn-danger btn-small" onclick="delQuestion(event)">&times;</button>
+
+              <div class="form-group mr-4">
+                <label for="prompt" class="mr-1">Prompt</label>
+                <input type="text" class="form-control" id="question_prompt" name="prompt" placeholder="Who are You?" value="<%= question.prompt %>">
+              </div>
+
+              <div class="form-group">
+                <label for="name" class="mr-1">Field Name</label>
+                <input type="text" class="form-control" id="question_name" name="name" placeholder="Fred Jones" value="<%= question.name %>">
+              </div>
+            </div>
+          <% } %>
+        <% } %>
+
+        <template id="survey_question" class="form-inline mb-4">
+          <div class="question">
+            <button type="button" class="remove btn btn-danger btn-small" onclick="delQuestion(event)">&times;</button>
+
+            <div class="form-group mr-4">
+              <label for="prompt" class="mr-1">Prompt</label>
+              <input type="text" class="form-control" id="question_prompt" name="prompt" placeholder="Who are You?">
+            </div>
+
+            <div class="form-group">
+              <label for="name" class="mr-1">Field Name</label>
+              <input type="text" class="form-control" id="question_name" name="name" placeholder="Fred Jones">
+            </div>
+          </div>
+        </template>
+      </div>
+
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Update Survey</button>
       </div>
