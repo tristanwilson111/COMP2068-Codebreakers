@@ -121,8 +121,6 @@ exports.create = function(req, res, next) {
   Survey.create({
     name: req.body.name,
     description: req.body.description,
-    price: req.body.price,
-    specifications: specifications,
   })
     .then(function() {
       res.redirect('/surveys');
@@ -167,8 +165,6 @@ exports.update = function(req, res, next) {
     .then(function(survey) {
       survey.name = req.body.name;
       survey.description = req.body.description;
-      survey.price = req.body.price;
-      survey.specifications = specifications;
 
       survey
         .save()
