@@ -120,3 +120,7 @@ exports.delete = function(req, res, next) {
       next(err);
     });
 };
+
+exports.respond = (req, res, nex) => {
+  // thing
+};
