@@ -39,7 +39,7 @@ exports.create = function(req, res, next) {
 };
 
 exports.mySurveys = (req, res, next) => {
-  Survey.find({ creatorID: req.params._id })
+  Survey.find({ creatorID: req.user._id })
     .then(surveys => {
       res.render('users/surveys', { surveys });
     })

@@ -96,34 +96,12 @@ exports.create = function(req, res, next) {
     return res.redirect('/sessions/new');
   }
 
-  // // specifications
-  // let specifications = null;
-  // if (req.body['specification[key]'] && req.body['specification[value]']) {
-  //   // assign our fields results to variables
-  //   let spec_keys = req.body['specification[key]'];
-  //   let spec_values = req.body['specification[value]'];
-
-  //   // assign an empty array to specfications
-  //   specifications = [];
-
-  //   // verify that spec keys and values are equal
-  //   // populate if an array
-  //   if (spec_keys && Array.isArray(spec_keys)) {
-  //     for (let i = 0; i < spec_keys.length; i++) {
-  //       specifications.push({ key: spec_keys[i], value: spec_values[i] });
-  //     }
-  //   } else {
-  //     // populate if a string
-  //     specifications.push({ key: spec_keys, value: spec_values });
-  //   }
-  // }
-
   Survey.create({
     name: req.body.name,
     description: req.body.description,
   })
     .then(function() {
-      res.redirect('/surveys');
+      res.redirect('/' + req.user._id + '/surveys');
     })
     .catch(function(err) {
       next(err);
@@ -138,28 +116,6 @@ exports.update = function(req, res, next) {
 
     return res.redirect('/sessions/new');
   }
-
-  // // specifications
-  // console.log(req.body);
-  // let specifications = null;
-  // if (req.body['specification[key]'] && req.body['specification[value]']) {
-  //   // assign our fields results to variables
-  //   let spec_keys = req.body['specification[key]'];
-  //   let spec_values = req.body['specification[value]'];
-
-  //   // assign an empty array to specfications
-  //   specifications = [];
-
-  //   // populate if an array
-  //   if (spec_keys && Array.isArray(spec_keys)) {
-  //     for (let i = 0; i < spec_keys.length; i++) {
-  //       specifications.push({ key: spec_keys[i], value: spec_values[i] });
-  //     }
-  //   } else {
-  //     // populate if a string
-  //     specifications.push({ key: spec_keys, value: spec_values });
-  //   }
-  // }
 
   Survey.findById(req.params.id)
     .then(function(survey) {
