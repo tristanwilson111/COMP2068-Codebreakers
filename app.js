@@ -15,12 +15,6 @@ var indexRouter = require('./routes/index');
 // add the surveys routes
 var surveysRouter = require('./routes/surveys');
 
-// add the users routes
-var usersRouter = require('./routes/users');
-
-// add the sessions routes
-var sessionsRouter = require('./routes/sessions');
-
 var app = express();
 app.use(fileUpload());
 
@@ -28,25 +22,8 @@ app.use(fileUpload());
 var mongoose = require('mongoose');
 var config = require('./config/connect');
 
-// authentication
-const passport = require('passport');
-const session = require('express-session');
-const localStrategy = require('passport-local').Strategy;
-
 // our connection
 mongoose.connect(config.db);
-
-// PASSPORT CONFIGURATION
-app.use(
-  session({
-    secret: 'any string for salting here', // salt key for hashing
-    resave: true, // stop user from being logged out
-    saveUninitialized: false, // don't start a session if guest
-  }),
-);
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -71,9 +48,6 @@ app.use('/', indexRouter);
 
 // this is our surveys router
 app.use('/surveys', surveysRouter);
-
-// this is our sessions router
-app.use('/sessions', sessionsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
