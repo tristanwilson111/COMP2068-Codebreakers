@@ -31,32 +31,31 @@
           </div>
         </div> -->
       </fieldset>
+      <fieldset>
+        <legend>Questions</legend>
 
-      <!-- <fieldset>
-        <legend>Specifications</legend>
-
-        <div id="survey_specifications">
+        <div id="survey_questions">
           <div class="form-group">
-            <button type="button" class="btn btn-success btn-sm" onclick="addSpecForm()">Add Specification</button>
+            <button type="button" class="btn btn-success btn-sm" onclick="addQuestion()">Add Question</button>
           </div>
 
-          <template id="survey_specification" class="form-inline mb-4">
-            <div class="specification">
-              <button type="button" class="remove btn btn-danger btn-small" onclick="delSpecForm(event)">&times;</button>
+          <template id="survey_question" class="form-inline mb-4">
+            <div class="question">
+              <button type="button" class="remove btn btn-danger btn-small" onclick="delQuestion(event)">&times;</button>
 
               <div class="form-group mr-4">
-                <label for="specification[key]" class="mr-1">Key</label>
-                <input type="text" class="form-control" id="survey_specification_key" name="specification[key]" placeholder="colour">
+                <label for="prompt" class="mr-1">Prompt</label>
+                <input type="text" class="form-control" id="question_prompt" name="prompt" placeholder="Who are You?">
               </div>
 
               <div class="form-group">
-                <label for="specification[value]" class="mr-1">Value</label>
-                <input type="text" class="form-control" id="survey_specification_value" name="specification[value]" placeholder="red">
+                <label for="name" class="mr-1">Field Name</label>
+                <input type="text" class="form-control" id="question_name" name="name" placeholder="Fred Jones">
               </div>
             </div>
           </template>
         </div>
-      </fieldset> -->
+      </fieldset>
 
       <div class="form-group">
         <button type="submit" class="btn btn-primary btn-lg">Create Survey</button>

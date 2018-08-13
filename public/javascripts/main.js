@@ -1,14 +1,14 @@
 // adds the spec form to the dom
-function addSpecForm() {
-  let specTemp = document.querySelector('#product_specification');
-  let insertPnt = document.querySelector('#product_specifications');
+function addQuestion() {
+  let questionTemp = document.querySelector('#survey_question');
+  let insertPoint = document.querySelector('#survey_questions');
 
-  let clone = document.importNode(specTemp.content, true);
+  let clone = document.importNode(questionTemp.content, true);
 
-  insertPnt.appendChild(clone);
+  insertPoint.appendChild(clone);
 }
 
 // removes the spec form from the dom
-function delSpecForm(event) {
+function delQuestion(event) {
   event.target.parentNode.remove();
 }
