@@ -16,7 +16,9 @@ router.get('/:id', surveysController.show);
 // edit (http://my-app.com/surveys/12345/edit)
 router.get('/:id/edit', surveysController.edit);
 
-router.get('/:id/respond', surveysController.respond);
+router.get('/:id/respond', surveysController.writeResponse);
+
+router.post('/:id/respond', surveysController.commitResponse);
 
 // create (http://my-app.com/surveys)
 router.post('/', surveysController.create);

@@ -8,8 +8,10 @@ exports.index = (req, res, next) => {
     title: 'Surveys List',
   };
 
+  console.log('Fuck');
   Survey.find()
     .then(surveys => {
+      console.log(surveys);
       // add the surveys to our locals
       locals.surveys = surveys;
 
@@ -17,6 +19,7 @@ exports.index = (req, res, next) => {
       res.render('surveys/index', locals);
     })
     .catch(err => {
+      console.log(err);
       next(err);
     });
 };
@@ -80,7 +83,7 @@ exports.create = function(req, res, next) {
     description: req.body.description,
   })
     .then(function() {
-      res.redirect('/' + req.user._id + '/surveys');
+      res.redirect('/surveys');
     })
     .catch(function(err) {
       next(err);
@@ -121,6 +124,36 @@ exports.delete = function(req, res, next) {
     });
 };
 
-exports.respond = (req, res, nex) => {
-  // thing
+exports.writeResponse = (req, res, nex) => {
+  Survey.findById({
+    _id: req.params.id,
+  })
+    .then(survey => {
+      // add the surveys to our locals
+      locals.survey = survey;
+
+      // render our view
+      res.render('surveys/respond', locals);
+    })
+    .catch(err => {
+      next(err);
+    });
+};
+
+exports.commitResponse = (req, res, nex) => {
+  Survey.update(
+    {
+      _id: req.params.id,
+    },
+    {
+      $push: { reponses: req.body.response },
+    },
+  )
+    .then(res =>
+      // render our view
+      res.redirect('surveys'),
+    )
+    .catch(err => {
+      next(err);
+    });
 };
