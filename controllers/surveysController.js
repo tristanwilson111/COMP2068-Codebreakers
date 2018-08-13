@@ -96,42 +96,32 @@ exports.create = function(req, res, next) {
     return res.redirect('/sessions/new');
   }
 
-  // image
-  if (req.files && req.files.image) {
-    let image = req.files.image;
-    image.mv(`public/images/${image.name}`);
-    imageName = image.name;
-  } else {
-    imageName = null;
-  }
+  // // specifications
+  // let specifications = null;
+  // if (req.body['specification[key]'] && req.body['specification[value]']) {
+  //   // assign our fields results to variables
+  //   let spec_keys = req.body['specification[key]'];
+  //   let spec_values = req.body['specification[value]'];
 
-  // specifications
-  let specifications = null;
-  if (req.body['specification[key]'] && req.body['specification[value]']) {
-    // assign our fields results to variables
-    let spec_keys = req.body['specification[key]'];
-    let spec_values = req.body['specification[value]'];
+  //   // assign an empty array to specfications
+  //   specifications = [];
 
-    // assign an empty array to specfications
-    specifications = [];
-
-    // verify that spec keys and values are equal
-    // populate if an array
-    if (spec_keys && Array.isArray(spec_keys)) {
-      for (let i = 0; i < spec_keys.length; i++) {
-        specifications.push({ key: spec_keys[i], value: spec_values[i] });
-      }
-    } else {
-      // populate if a string
-      specifications.push({ key: spec_keys, value: spec_values });
-    }
-  }
+  //   // verify that spec keys and values are equal
+  //   // populate if an array
+  //   if (spec_keys && Array.isArray(spec_keys)) {
+  //     for (let i = 0; i < spec_keys.length; i++) {
+  //       specifications.push({ key: spec_keys[i], value: spec_values[i] });
+  //     }
+  //   } else {
+  //     // populate if a string
+  //     specifications.push({ key: spec_keys, value: spec_values });
+  //   }
+  // }
 
   Survey.create({
     name: req.body.name,
     description: req.body.description,
     price: req.body.price,
-    image: imageName,
     specifications: specifications,
   })
     .then(function() {
@@ -151,43 +141,33 @@ exports.update = function(req, res, next) {
     return res.redirect('/sessions/new');
   }
 
-  // image
-  if (req.files && req.files.image) {
-    let image = req.files.image;
-    image.mv(`public/images/${image.name}`);
-    imageName = image.name;
-  } else {
-    imageName = null;
-  }
+  // // specifications
+  // console.log(req.body);
+  // let specifications = null;
+  // if (req.body['specification[key]'] && req.body['specification[value]']) {
+  //   // assign our fields results to variables
+  //   let spec_keys = req.body['specification[key]'];
+  //   let spec_values = req.body['specification[value]'];
 
-  // specifications
-  console.log(req.body);
-  let specifications = null;
-  if (req.body['specification[key]'] && req.body['specification[value]']) {
-    // assign our fields results to variables
-    let spec_keys = req.body['specification[key]'];
-    let spec_values = req.body['specification[value]'];
+  //   // assign an empty array to specfications
+  //   specifications = [];
 
-    // assign an empty array to specfications
-    specifications = [];
-
-    // populate if an array
-    if (spec_keys && Array.isArray(spec_keys)) {
-      for (let i = 0; i < spec_keys.length; i++) {
-        specifications.push({ key: spec_keys[i], value: spec_values[i] });
-      }
-    } else {
-      // populate if a string
-      specifications.push({ key: spec_keys, value: spec_values });
-    }
-  }
+  //   // populate if an array
+  //   if (spec_keys && Array.isArray(spec_keys)) {
+  //     for (let i = 0; i < spec_keys.length; i++) {
+  //       specifications.push({ key: spec_keys[i], value: spec_values[i] });
+  //     }
+  //   } else {
+  //     // populate if a string
+  //     specifications.push({ key: spec_keys, value: spec_values });
+  //   }
+  // }
 
   Survey.findById(req.params.id)
     .then(function(survey) {
       survey.name = req.body.name;
       survey.description = req.body.description;
       survey.price = req.body.price;
-      survey.image = imageName;
       survey.specifications = specifications;
 
       survey
