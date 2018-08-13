@@ -1,61 +1,37 @@
 <% include ../partials/header %>
 
   <section>
-   
-      <div>
-        <a href="/surveys/new">New Survey</a>
-      </div>
-        <div class="row">
 
-          <div class="col-sm-6">
-            <div class="card">
-              <div class="card-body">
-                <% if ( survey.image ) { %>
-                  <div class="image">
-                    <img src="/images/<%= survey.image %>" class="img-thumbnail img-fluid">
-                  </div>
-                  <% } %>
+    <div>
+      <a href="/surveys/new">New Survey</a>
+    </div>
+    <div class="row">
 
-                    <h5 class="card-title">
-                      <%= survey.name %>
-                    </h5>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= survey.creatorName %>
+            </h5>
 
-                    <p>
-                      <%= survey.description %>
-                    </p>
+            <p>
+              <%= survey.description %>
+            </p>
+            <div class="actions">
+              <a href="/surveys/<%= survey.id %>/edit" class="btn btn-primary">
+                Edit
+              </a>
 
-                    <p>
-                      <%= survey.price %>
-                    </p>
-
-                    <% if ( survey.specifications && survey.specifications.length > 0 ) { %>
-                      <hr>
-                      <h6>Specs</h6>
-                      <% for( let spec of survey.specifications ) { %>
-                        <p>
-                          <strong>
-                            <%= spec.key %>: </strong>
-                          <%= spec.value %>
-                        </p>
-                        <% } %>
-                          <% } %>
-
-                            
-                              <div class="actions">
-                                <a href="/surveys/<%= survey.id %>/edit" class="btn btn-primary">
-                                  Edit
-                                </a>
-
-                                <form action="/surveys/<%= survey.id %>/delete" method="post" onsubmit="return confirm('Are you sure you want to delete this survey?');">
-                                  <input type="hidden" name="id" value="<%= survey.id %>">
-                                  <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                              </div>
-              </div>
+              <form action="/surveys/<%= survey.id %>/delete" method="post" onsubmit="return confirm('Are you sure you want to delete this survey?');">
+                <input type="hidden" name="id" value="<%= survey.id %>">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
             </div>
           </div>
-
         </div>
+      </div>
+
+    </div>
   </section>
 
   <% include ../partials/footer %>
