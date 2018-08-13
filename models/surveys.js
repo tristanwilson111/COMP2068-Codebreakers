@@ -13,17 +13,17 @@ const SurveyLineSchema = new mongoose.Schema({
 });
 
 const SurveySchema = new mongoose.Schema({
-  creatorID: {
+  creatorName: {
     type: String,
-    // required: 'Survey must be associated with a user ID.',
+    required: 'Survey must be associated with a user ID.',
   },
-  name: {
+  surveyName: {
     type: String,
     required: 'Survey must have a name.',
   },
   description: {
     type: String,
-    //required: 'Please enter a survey description.',
+    required: 'Please enter a survey description.',
   },
   surveyData: [SurveyLineSchema],
   responses: [Object],
