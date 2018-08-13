@@ -90,13 +90,15 @@ exports.create = function(req, res, next) {
   }
 
   Survey.create({
-    name: req.body.name,
+    creatorName: req.body.creatorName,
+    surveyName: req.body.surveyName,
     description: req.body.description,
+    surveyData: questions,
   })
-    .then(function() {
+    .then(() => {
       res.redirect('/surveys');
     })
-    .catch(function(err) {
+    .catch(err => {
       next(err);
     });
 };
