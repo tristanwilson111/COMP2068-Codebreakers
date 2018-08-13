@@ -149,7 +149,6 @@ exports.delete = function(req, res, next) {
       next(err);
     });
 };
-
 exports.writeResponse = (req, res, nex) => {
   Survey.findById({
     _id: req.params.id,
