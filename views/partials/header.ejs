@@ -23,23 +23,6 @@
         <a class="nav-link" href="/surveys">Surveys</a>
       </li>
     </ul>
-
-    <ul class="navbar-nav">
-      <% if ( !authenticated ) { %>
-        <li class="nav-item">
-          <a class="nav-link" href="/sessions/new">Login</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/users/new">Register</a>
-        </li>
-
-        <% } else { %>
-          <li class="nav-item">
-            <a class="nav-link" href="/sessions/delete">Logout</a>
-          </li>
-          <% } %>
-    </ul>
   </nav>
 
   <% if ( locals.messages && messages.length > 0 ) { %>

@@ -48,21 +48,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// reference User model
-const User = require('./models/user');
-passport.use(User.createStrategy());
-
-// session management for users
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
-// our helper
-app.use(function(req, res, next) {
-  res.locals.authenticated = req.isAuthenticated();
-  next();
-});
-// END OF PASSPORT CONFIGURATION
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -86,9 +71,6 @@ app.use('/', indexRouter);
 
 // this is our surveys router
 app.use('/surveys', surveysRouter);
-
-// this is our users router
-app.use('/users', usersRouter);
 
 // this is our sessions router
 app.use('/sessions', sessionsRouter);
