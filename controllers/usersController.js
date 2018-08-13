@@ -1,5 +1,6 @@
-var User = require('../models/user');
-var passport = require('passport');
+const User = require('../models/user');
+const passport = require('passport');
+const Survey = require('../models/surveys');
 
 /* VIEWS */
 exports.new = function(req, res, next) {
@@ -34,5 +35,15 @@ exports.create = function(req, res, next) {
       req.session.messages = 'There was an issue registering your account.';
 
       res.redirect('/users/new');
+    });
+};
+
+exports.mySurveys = (req, res, next) => {
+  Survey.find({ creatorID: req.params._id })
+    .then(surveys => {
+      res.render('users/surveys', { surveys });
+    })
+    .catch(err => {
+      next(err);
     });
 };

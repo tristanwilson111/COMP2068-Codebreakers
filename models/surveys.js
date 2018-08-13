@@ -17,6 +17,10 @@ const SurveySchema = new mongoose.Schema({
     type: String,
     // required: 'Survey must be associated with a user ID.',
   },
+  name: {
+    type: String,
+    required: 'Survey must have a name.',
+  },
   description: {
     type: String,
     //required: 'Please enter a survey description.',
