@@ -42,13 +42,6 @@ exports.show = (req, res, next) => {
 
 // New
 exports.new = (req, res, next) => {
-  if (!req.isAuthenticated()) {
-    req.session.messages = [];
-    req.session.messages.push('Please login.');
-
-    return res.redirect('/sessions/new');
-  }
-
   // locals
   let locals = {
     title: 'New Survey',
@@ -59,13 +52,6 @@ exports.new = (req, res, next) => {
 
 // Edit
 exports.edit = (req, res, next) => {
-  if (!req.isAuthenticated()) {
-    req.session.messages = [];
-    req.session.messages.push('Please login.');
-
-    return res.redirect('/sessions/new');
-  }
-
   // locals
   let locals = {
     title: 'Edit Survey',
@@ -89,13 +75,6 @@ exports.edit = (req, res, next) => {
 /* ACTIONS */
 // Create
 exports.create = function(req, res, next) {
-  if (!req.isAuthenticated()) {
-    req.session.messages = [];
-    req.session.messages.push('Please login.');
-
-    return res.redirect('/sessions/new');
-  }
-
   Survey.create({
     name: req.body.name,
     description: req.body.description,
@@ -110,13 +89,6 @@ exports.create = function(req, res, next) {
 
 // Update
 exports.update = function(req, res, next) {
-  if (!req.isAuthenticated()) {
-    req.session.messages = [];
-    req.session.messages.push('Please login.');
-
-    return res.redirect('/sessions/new');
-  }
-
   Survey.findById(req.params.id)
     .then(function(survey) {
       survey.name = req.body.name;
@@ -138,13 +110,6 @@ exports.update = function(req, res, next) {
 
 // Delete
 exports.delete = function(req, res, next) {
-  if (!req.isAuthenticated()) {
-    req.session.messages = [];
-    req.session.messages.push('Please login.');
-
-    return res.redirect('/sessions/new');
-  }
-
   Survey.remove({
     _id: req.body.id,
   })
