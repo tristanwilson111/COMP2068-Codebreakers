@@ -1,12 +1,10 @@
 <% include ../partials/header %>
 
   <section>
-    <% if ( authenticated ) { %>
+   
       <div>
         <a href="/surveys/new">New Survey</a>
       </div>
-      <% } %>
-
         <div class="row">
 
           <div class="col-sm-6">
@@ -42,7 +40,7 @@
                         <% } %>
                           <% } %>
 
-                            <% if ( authenticated ) { %>
+                            
                               <div class="actions">
                                 <a href="/surveys/<%= survey.id %>/edit" class="btn btn-primary">
                                   Edit
@@ -53,7 +51,6 @@
                                   <button type="submit" class="btn btn-danger">Delete</button>
                                 </form>
                               </div>
-                              <% } %>
               </div>
             </div>
           </div>
