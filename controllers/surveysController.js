@@ -105,20 +105,33 @@ exports.create = function(req, res, next) {
 
 // Update
 exports.update = function(req, res, next) {
-  Survey.findById(req.params.id)
-    .then(function(survey) {
-      survey.name = req.body.name;
-      survey.description = req.body.description;
+  let questions = [];
+  if (req.body['prompt'] && req.body['name']) {
+    // assign our fields results to variables
+    let q_prompts = req.body['prompt'];
+    let q_names = req.body['name'];
 
-      survey
-        .save()
-        .then(function() {
-          res.redirect('/surveys');
-        })
-        .catch(function(err) {
-          next(err);
-        });
-    })
+    if (q_prompts && Array.isArray(q_prompts)) {
+      for (let i = 0; i < q_prompts.length; i++) {
+        questions.push({ prompt: q_prompts[i], name: q_names[i] });
+      }
+    } else {
+      questions.push({ prompt: q_prompts, name: q_names });
+    }
+  }
+
+  Survey.update(
+    {
+      _id: req.params.id,
+    },
+    {
+      creatorName: req.body.creatorName,
+      surveyName: req.body.surveyName,
+      description: req.body.description,
+      surveyData: questions,
+    },
+  )
+    .then(() => res.redirect('/surveys'))
     .catch(function(err) {
       next(err);
     });
