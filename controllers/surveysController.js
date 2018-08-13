@@ -169,19 +169,20 @@ exports.writeResponse = (req, res, next) => {
     });
 };
 
-exports.commitResponse = (req, res, nex) => {
+exports.commitResponse = (req, res, next) => {
+  let response = {
+    ...req.body,
+  };
+
   Survey.update(
     {
       _id: req.params.id,
     },
     {
-      $push: { reponses: req.body.response },
+      $push: { responses: response },
     },
   )
-    .then(res =>
-      // render our view
-      res.redirect('surveys'),
-    )
+    .then(() => res.redirect('/surveys'))
     .catch(err => {
       next(err);
     });

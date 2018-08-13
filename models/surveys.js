@@ -26,7 +26,7 @@ const SurveySchema = new mongoose.Schema({
     // required: 'Please enter a survey description.',
   },
   surveyData: [SurveyLineSchema],
-  responses: [Object],
+  responses: [mongoose.Schema.Types.Mixed],
 });
 
 // make this class public
