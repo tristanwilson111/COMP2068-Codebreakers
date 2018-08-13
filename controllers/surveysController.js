@@ -7,11 +7,8 @@ exports.index = (req, res, next) => {
   let locals = {
     title: 'Surveys List',
   };
-
-  console.log('Fuck');
   Survey.find()
     .then(surveys => {
-      console.log(surveys);
       // add the surveys to our locals
       locals.surveys = surveys;
 
@@ -19,7 +16,6 @@ exports.index = (req, res, next) => {
       res.render('surveys/index', locals);
     })
     .catch(err => {
-      console.log(err);
       next(err);
     });
 };
@@ -78,6 +74,21 @@ exports.edit = (req, res, next) => {
 /* ACTIONS */
 // Create
 exports.create = function(req, res, next) {
+  let questions = [];
+  if (req.body['prompt'] && req.body['name']) {
+    // assign our fields results to variables
+    let q_prompts = req.body['prompt'];
+    let q_names = req.body['name'];
+
+    if (q_prompts && Array.isArray(q_prompts)) {
+      for (let i = 0; i < q_prompts.length; i++) {
+        questions.push({ prompt: q_prompts[i], name: q_names[i] });
+      }
+    } else {
+      questions.push({ prompt: q_prompts, name: q_names });
+    }
+  }
+
   Survey.create({
     name: req.body.name,
     description: req.body.description,

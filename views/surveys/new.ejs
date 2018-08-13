@@ -21,7 +21,35 @@
             required>
         </div>
       </fieldset>
+      <fieldset>
+        <legend>Questions</legend>
 
+<<<<<<< HEAD
+=======
+        <div id="survey_questions">
+          <div class="form-group">
+            <button type="button" class="btn btn-success btn-sm" onclick="addQuestion()">Add Question</button>
+          </div>
+
+          <template id="survey_question" class="form-inline mb-4">
+            <div class="question">
+              <button type="button" class="remove btn btn-danger btn-small" onclick="delQuestion(event)">&times;</button>
+
+              <div class="form-group mr-4">
+                <label for="prompt" class="mr-1">Prompt</label>
+                <input type="text" class="form-control" id="question_prompt" name="prompt" placeholder="Who are You?">
+              </div>
+
+              <div class="form-group">
+                <label for="name" class="mr-1">Field Name</label>
+                <input type="text" class="form-control" id="question_name" name="name" placeholder="Fred Jones">
+              </div>
+            </div>
+          </template>
+        </div>
+      </fieldset>
+
+>>>>>>> d44cb8b6c1edd4f057e16b3c003cc21806acceb1
       <div class="form-group">
         <button type="submit" class="btn btn-primary btn-lg">Create Survey</button>
       </div>
