@@ -150,7 +150,10 @@ exports.delete = function(req, res, next) {
     });
 };
 
-exports.writeResponse = (req, res, nex) => {
+exports.writeResponse = (req, res, next) => {
+  let locals = {
+    title: 'respond',
+  };
   Survey.findById({
     _id: req.params.id,
   })

@@ -1,27 +1,29 @@
 <% include ../partials/header %>
 
   <section>
+      <h1>
+        <%= survey.surveyName %>
+      </h1>
+      <h2>
+        <%= survey.creatorName %>
+      </h2>
+      <p>
+        <%= survey.description %>
+      </p>
     <form action="/surveys/<%= survey.id %>/respond" method="post" novalidate enctype="multipart/form-data">
-      <fieldset>
-        <legend>
-          <%= survey.surveyName %>
-        </legend>
-        <legend>
-          <%= survey.creatorName %>
-        </legend>
-        <p>
-          <%= survey.description %>
-        </p>
-
-        <div class="form-group">
-          <label for="description">Description</label>
-          <input type="text" class="form-control" id="survey_description" name="description" placeholder="Greasy, black, vampires of the deep."
-            required value="<%= survey.description %>">
-        </div>
-      </fieldset>
-
+      <% if( survey.surveyData && survey.surveyData.length > 0 ) { %>
+        <% for( let line of survey.surveyData) { %>
+          <fieldset>
+            <div class="form-group">
+              <label for="<%= line.name %>"><%= line.prompt %></label>
+              <input type="text" class="form-control" id="survey_description" name="<%= line.name %>"
+                required >
+            </div>
+          </fieldset>
+        <% } %>
+      <% } %>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary">Update Survey</button>
+        <button type="submit" class="btn btn-primary">Respond Survey</button>
       </div>
     </form>
   </section>
