@@ -13,7 +13,7 @@ const SpecificationSchema = new mongoose.Schema({
   }
 });
 
-const ProductSchema = new mongoose.Schema({
+const SurveySchema = new mongoose.Schema({
   name: {
     type: String,
     required: 'Please enter a product name.'
@@ -33,4 +33,4 @@ const ProductSchema = new mongoose.Schema({
 });
 
 // make this class public
-module.exports = mongoose.model( 'Product', ProductSchema );
+module.exports = mongoose.model( 'Survey', SurveySchema );
