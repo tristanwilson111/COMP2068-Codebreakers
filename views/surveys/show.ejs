@@ -26,6 +26,7 @@
           </div>
         </div>
       </div>
+      <h3>Responses To This Survey</h3>
 
       <div class="row">
         <% if( survey.responses && survey.responses.length > 0 ) { %>
@@ -38,9 +39,9 @@
                     <% for( let question of survey.surveyData) { %>
                       <% if(question.name == pair[0]) { %>
                         <h4 ><%= question.prompt %></h1>
+                        <p><%= pair[1] %></p>
                       <% } %>
                     <% } %>
-                    <p><%= pair[1] %></p>
                   <% } %>
               </div>
             </div>
